@@ -44,7 +44,7 @@ document.getElementById('puzzle').onmousemove = function(e) {
 };
 
 document.getElementById('puzzle').onclick = function() {
-  if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
+  if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {//点击的块和空的块相邻
     slideTile(emptyLoc, clickLoc);
     drawTiles();
   }
@@ -76,7 +76,7 @@ function drawTiles() {
     for (var j = 0; j < tileCount; j++) {
       var x = boardParts[i][j].x;
       var y = boardParts[i][j].y;
-      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {
+      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {//以对角的形式将图片画到画布上
         context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize,
             i * tileSize, j * tileSize, tileSize, tileSize);
       }
@@ -89,7 +89,7 @@ function distance(x1, y1, x2, y2) {
 }
 
 function slideTile(toLoc, fromLoc) {
-  if (!solved) {
+  if (!solved) {//没有拼图成功的话
     boardParts[toLoc.x][toLoc.y].x = boardParts[fromLoc.x][fromLoc.y].x;
     boardParts[toLoc.x][toLoc.y].y = boardParts[fromLoc.x][fromLoc.y].y;
     boardParts[fromLoc.x][fromLoc.y].x = tileCount - 1;
